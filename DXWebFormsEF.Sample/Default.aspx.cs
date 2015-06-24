@@ -73,5 +73,10 @@ namespace DXWebFormsEF.Sample
 				if ((gv != null) && (gv.DataSourceID == EntityServerModeDataSource1.ID))
 					 gv.CancelEdit();
 		  }
+
+		  protected void ObjectDataSource1_Selecting(object sender, System.Web.UI.WebControls.ObjectDataSourceSelectingEventArgs e)
+		  {
+				e.InputParameters["searchText"] = ASPxGridView1.SearchPanelFilter;
+		  }
 	 }
 }

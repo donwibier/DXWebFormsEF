@@ -6,7 +6,7 @@ namespace DXWebFormsEF.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Album")]
+    [Table("Album")]	 
     public partial class Album
     {
         public Album()

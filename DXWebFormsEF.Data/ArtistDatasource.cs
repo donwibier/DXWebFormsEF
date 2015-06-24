@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,6 +63,60 @@ namespace DXWebFormsEF.Data
 					 context.SaveChanges();
 				}
 		  }
+
+		  #region advanced ObjectDatasource methods
+		  [DataObjectMethod(DataObjectMethodType.Select, false)]
+		  public IEnumerable<Artist> SelectPaged(string searchText, string sortExpression, int startRowIndex, int maximumRows)
+		  {
+				if (String.IsNullOrEmpty(sortExpression))
+					 sortExpression = "ArtistId ASC";
+
+				string[] sort = sortExpression.Split(' ');
+				string sortKey = sort[0];
+				bool sortAsc = sort[1] == "ASC";
+
+				IQueryable<Artist> query = context.Artist;
+
+				var param = Expression.Parameter(typeof(Artist), "a");
+				Expression body = Expression.Property(param, sortKey);
+				if (body.Type == typeof(int))
+				{
+					 var s = Expression.Lambda<Func<Artist, int>>(body, param);
+					 query = sortAsc ? query.OrderBy(s) : query.OrderByDescending(s);
+				}
+				else if (body.Type == typeof(DateTime))
+				{
+					 var s = Expression.Lambda<Func<Artist, DateTime>>(body, param);
+					 query = sortAsc ? query.OrderBy(s) : query.OrderByDescending(s);
+				}
+				else
+				{
+					 var s = Expression.Lambda<Func<Artist, object>>(body, param);
+					 query = sortAsc ? query.OrderBy(s) : query.OrderByDescending(s);
+				}
+
+				if (!String.IsNullOrEmpty(searchText))
+					 query = query.Where(a => a.Name.Contains(searchText ?? ""));
+
+				context.Configuration.LazyLoadingEnabled = false;
+
+				var result = query
+					 .Skip(startRowIndex)
+					 .Take(maximumRows).ToList();
+
+				return result;
+		  }
+
+		  public int SelectPagedCount(string searchText, string sortExpression, int startRowIndex, int maximumRows)
+		  {
+				IQueryable<Artist> result = context.Artist;
+
+				if (!String.IsNullOrEmpty(searchText))
+					 result = result.Where(a => a.Name.Contains(searchText));
+
+				return result.Count();
+		  }
+		  #endregion
 	 }
 
 }

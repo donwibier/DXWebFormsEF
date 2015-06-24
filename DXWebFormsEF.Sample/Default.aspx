@@ -13,7 +13,7 @@
     <div>		  
     	 <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
 				Width="1000px"
-				DataSourceID="ObjectDataSource1" KeyFieldName="ArtistId" OnRowInserting="ASPxGridView1_RowInserting" OnRowUpdating="ASPxGridView1_RowUpdating">
+				DataSourceID="EntityDatasource1" KeyFieldName="ArtistId" OnRowInserting="ASPxGridView1_RowInserting" OnRowUpdating="ASPxGridView1_RowUpdating">
 			  <SettingsEditing Mode="Inline">
 			  </SettingsEditing>
 			  <SettingsSearchPanel Visible="True" />
@@ -36,8 +36,18 @@
 				DataObjectTypeName="DXWebFormsEF.Data.Artist" 
 				DeleteMethod="Delete" InsertMethod="Insert" 
 				OldValuesParameterFormatString="original_{0}" 
-				SelectMethod="Select" TypeName="DXWebFormsEF.Data.ArtistDatasource" 
-				UpdateMethod="Update">
+				SelectMethod="SelectPaged" 
+				TypeName="DXWebFormsEF.Data.ArtistDatasource" 
+				UpdateMethod="Update" 
+				OnSelecting="ObjectDataSource1_Selecting" 
+				SelectCountMethod="SelectPagedCount" 
+				SortParameterName="sortExpression">
+				<SelectParameters>
+					 <asp:Parameter Name="searchText" Type="String" />
+					 <asp:Parameter Name="sortExpression" Type="String" />
+					 <asp:Parameter Name="startRowIndex" Type="Int32" />
+					 <asp:Parameter Name="maximumRows" Type="Int32" />
+				</SelectParameters>
 
 		  </asp:ObjectDataSource>
     </form>
