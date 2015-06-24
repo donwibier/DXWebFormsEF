@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXWebFormsEF.Sample", "DXWebFormsEF.Sample\DXWebFormsEF.Sample.csproj", "{6448A155-3653-4C23-B577-52979B544979}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXWebFormsEF.Data", "DXWebFormsEF.Data\DXWebFormsEF.Data.csproj", "{46E96D10-F989-426C-AF34-83FA6AC6DC38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6448A155-3653-4C23-B577-52979B544979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6448A155-3653-4C23-B577-52979B544979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6448A155-3653-4C23-B577-52979B544979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E96D10-F989-426C-AF34-83FA6AC6DC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E96D10-F989-426C-AF34-83FA6AC6DC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E96D10-F989-426C-AF34-83FA6AC6DC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E96D10-F989-426C-AF34-83FA6AC6DC38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
