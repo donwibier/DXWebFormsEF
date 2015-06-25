@@ -13,7 +13,7 @@
     <div>		  
     	 <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
 				Width="1000px"
-				DataSourceID="EntityDatasource1" KeyFieldName="ArtistId" OnRowInserting="ASPxGridView1_RowInserting" OnRowUpdating="ASPxGridView1_RowUpdating">
+				DataSourceID="ObjectDataSource1" KeyFieldName="ArtistId" OnRowInserting="ASPxGridView1_RowInserting" OnRowUpdating="ASPxGridView1_RowUpdating" DataSourceForceStandardPaging="True">
 			  <SettingsEditing Mode="Inline">
 			  </SettingsEditing>
 			  <SettingsSearchPanel Visible="True" />
@@ -41,7 +41,7 @@
 				UpdateMethod="Update" 
 				OnSelecting="ObjectDataSource1_Selecting" 
 				SelectCountMethod="SelectPagedCount" 
-				SortParameterName="sortExpression">
+				SortParameterName="sortExpression" EnablePaging="True">
 				<SelectParameters>
 					 <asp:Parameter Name="searchText" Type="String" />
 					 <asp:Parameter Name="sortExpression" Type="String" />
